@@ -7,7 +7,7 @@ services:
     volumes:
       - ./docker_data/redis:/data
   postgresql:
-    image: postgres
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_USER: postgres
@@ -16,4 +16,4 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - ./docker_data/postgres:/var/lib/postgresql/data
+      - ./docker_data/postgres:/var/lib/postgresql
