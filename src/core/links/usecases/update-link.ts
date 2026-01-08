@@ -2,6 +2,7 @@ import { getLinkRedis } from "@/redis/get-link-redis";
 import { Link } from "../models/link";
 import { PrismaLinkRepository } from "../repositories/prisma-link-repository";
 import { setLinkRedis } from "@/redis/set-link-redis";
+import { ResourceNotFoundError } from "../errors/ResourceNotFoundError";
 
 export async function updateLink(link: Link) {
   const linkRepository = new PrismaLinkRepository();
@@ -10,7 +11,7 @@ export async function updateLink(link: Link) {
   });
 
   if (!linkAlreadyExists)
-    throw new Error("That URL doesn't exist");
+    throw new ResourceNotFoundError();
 
   const result = await linkRepository.save(link);
 

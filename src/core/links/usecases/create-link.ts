@@ -1,3 +1,4 @@
+import { LinkAlreadyExistsError } from "../errors/LinkAlreadyExistsError";
 import { Link } from "../models/link";
 import { PrismaLinkRepository } from "../repositories/prisma-link-repository";
 
@@ -10,7 +11,7 @@ export async function createLink(link: Link) {
   });
 
   if (linkAlreadyExists)
-    throw new Error("That link already exists");
+    throw new LinkAlreadyExistsError();
 
   const result = await linkRepository.save(link);
   return result;
