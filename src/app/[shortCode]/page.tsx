@@ -18,8 +18,6 @@ export default async function RedirectPage({
 
 	const link = await getLinkByShortUrl(fullUrl);
 
-	console.table(link);
-
 	if (!link) return <NotFound />;
 
 	redirect(link.originalUrl);
