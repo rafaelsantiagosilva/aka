@@ -27,6 +27,7 @@ export default function Home() {
 		const data: LinkType = await res.json();
 		setShortedUrl(data.shortUrl);
 		setIsLoading(false);
+		setIsCopied(false);
 	};
 
 	const copyToClipboard = async (text: string) => {

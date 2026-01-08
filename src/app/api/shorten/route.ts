@@ -21,8 +21,8 @@ export async function POST(request: Request) {
   const linkAlreadyExists = await getLinkByOriginalUrl(originalUrl);
 
   if (linkAlreadyExists) {
-    const newLink = await updateLink({ ...linkAlreadyExists, shortUrl });
-    return NextResponse.json(newLink);
+    const updatedLink = await updateLink({ ...linkAlreadyExists, shortUrl });
+    return NextResponse.json(updatedLink);
   }
 
   const newLink = await createLink({ originalUrl, shortUrl });
