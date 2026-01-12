@@ -45,4 +45,14 @@ export class PrismaLinkRepository implements ILinkRepository {
 
     return result;
   }
+
+  async deleteExpired(): Promise<number> {
+    const deleted = await prisma.link.deleteMany({
+      where: {
+        expiresAt: { lt: new Date() }
+      }
+    });
+
+    return deleted.count;
+  }
 }

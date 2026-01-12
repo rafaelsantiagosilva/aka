@@ -13,6 +13,10 @@ export async function updateLink(link: Link) {
   if (!linkAlreadyExists)
     throw new ResourceNotFoundError();
 
+  const oneHourFromNow = new Date();
+  oneHourFromNow.setHours(oneHourFromNow.getHours() + 1);
+  link.expiresAt = oneHourFromNow;
+
   const result = await linkRepository.save(link);
 
   if (await getLinkRedis(linkAlreadyExists.shortUrl))

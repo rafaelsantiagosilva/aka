@@ -9,4 +9,5 @@ export type SearchByParamRequest = {
 export interface ILinkRepository {
   save(link: Link): Promise<Link>;
   searchByParam(params: SearchByParamRequest): Promise<Link | null>;
+  deleteExpired(): Promise<number>;
 }

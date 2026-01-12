@@ -3,4 +3,5 @@ export type Link = {
   originalUrl: string
   shortUrl: string
   createdAt?: Date
+  expiresAt: Date
 }
