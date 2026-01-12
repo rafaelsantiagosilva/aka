@@ -13,10 +13,6 @@ export async function createLink(link: Link) {
   if (linkAlreadyExists)
     throw new LinkAlreadyExistsError();
 
-  const oneHourFromNow = new Date();
-  oneHourFromNow.setHours(oneHourFromNow.getHours() + 1);
-  link.expiresAt = oneHourFromNow;
-
   const result = await linkRepository.save(link);
   return result;
 }

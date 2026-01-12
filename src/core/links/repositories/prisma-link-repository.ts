@@ -4,19 +4,24 @@ import { ILinkRepository, SearchByParamRequest } from "./ILinkRepository";
 
 export class PrismaLinkRepository implements ILinkRepository {
   async save(link: Link): Promise<Link> {
+    const oneHourFromNow = new Date();
+    oneHourFromNow.setHours(oneHourFromNow.getHours() + 1);
+
     if (link.id)
       return await prisma.link.update({
         where: {
           id: link.id
         },
         data: {
-          ...link
+          ...link,
+          expiresAt: oneHourFromNow
         }
       });
 
     return await prisma.link.create({
       data: {
-        ...link
+        ...link,
+        expiresAt: oneHourFromNow
       }
     });
   }
