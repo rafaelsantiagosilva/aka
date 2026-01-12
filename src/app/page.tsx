@@ -22,8 +22,6 @@ export default function Home() {
 			body: JSON.stringify({ url }),
 		});
 
-		console.table(res);
-
 		const data: LinkType = await res.json();
 		setShortedUrl(data.shortUrl);
 		setIsLoading(false);
